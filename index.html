@@ -98,6 +98,14 @@
         .feedback-message h2 { font-size: 1.6em; }
         .feedback-message p { font-size: 1em; color: #6c757d; line-height: 1.6; }
 
+        /* --- MOBILE FRIENDLY STYLES --- */
+        @media (max-width: 600px) {
+            /* This is the key change for vertical videos on mobile */
+            .video-container {
+                padding-bottom: 177.77%; /* This creates a 9:16 aspect ratio for vertical videos */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -324,3 +332,4 @@
     </script>
 </body>
 </html>
+
