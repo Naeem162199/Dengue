@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ডেঙ্গু প্রতিরোধ কুইজ</title>
+
+    <!-- Google Analytics (Replace G-XXXXXXXXXX with your Measurement ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- End Google Analytics -->
+
+    <!-- === Facebook Share Meta Tags (IMPORTANT: EDIT THESE) === -->
+    <meta property="og:title" content="ডেঙ্গু প্রতিরোধ কুইজ খেলুন!">
+    <meta property="og:description" content="ডেঙ্গু প্রতিরোধ সম্পর্কে আপনার জ্ঞান পরীক্ষা করুন এবং আপনার পরিবারকে সুরক্ষিত রাখুন।">
+    <!-- Replace this with a URL to your own 1200x630px image for the thumbnail -->
+    <meta property="og:image" content="https://i.imgur.com/sM39Y98.png"> 
+    <meta property="og:url" content="https://naeem162199.github.io/dengue-quiz-1/"> <!-- Replace with your actual game URL -->
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
@@ -11,6 +31,7 @@
         :root {
             --primary-color: #00529B;
             --secondary-color: #007bff;
+            --facebook-blue: #1877F2;
             --light-bg: #f4f7f9;
             --dark-text: #212529;
             --light-text: #ffffff;
@@ -23,7 +44,7 @@
             font-family: 'Hind Siliguri', 'Roboto', sans-serif;
             background-color: var(--light-bg);
             margin: 0;
-            padding: 10px; /* Adjusted for mobile */
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -52,7 +73,6 @@
         .screen { padding: 20px 15px; }
         .screen:not(.visible) { display: none; }
         
-        /* This container is ONLY for the video and maintains the 16:9 ratio */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -70,9 +90,8 @@
             height: 100%;
         }
 
-        /* This container is for the question and has a flexible height */
         #question-area {
-            display: none; /* Hidden by default */
+            display: none;
             padding: 20px;
             box-sizing: border-box;
             background-color: #ffffff;
@@ -88,7 +107,7 @@
             line-height: 1.5;
         }
         .answer-buttons { display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%; }
-        .btn { background-color: var(--secondary-color); color: var(--light-text); border: none; padding: 15px; font-size: 1em; font-weight: 700; border-radius: var(--border-radius); cursor: pointer; transition: all 0.2s ease; width: 100%; font-family: 'Hind Siliguri', 'Roboto', sans-serif; }
+        .btn { background-color: var(--secondary-color); color: var(--light-text); border: none; padding: 15px; font-size: 1em; font-weight: 700; border-radius: var(--border-radius); cursor: pointer; transition: all 0.2s ease; width: 100%; font-family: 'Hind Siliguri', 'Roboto', sans-serif; text-decoration: none; display: inline-block; }
         .btn:hover { opacity: 0.9; transform: translateY(-2px); }
         .btn.correct { background-color: var(--correct-color); }
         .btn.incorrect { background-color: var(--incorrect-color); }
@@ -98,11 +117,33 @@
         .feedback-message h2 { font-size: 1.6em; }
         .feedback-message p { font-size: 1em; color: #6c757d; line-height: 1.6; }
 
-        /* --- MOBILE FRIENDLY STYLES --- */
+        #end-screen-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin: 15px auto;
+        }
+        .end-screen-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        #share-btn {
+            background-color: var(--facebook-blue);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            display: block;
+        }
+
         @media (max-width: 600px) {
-            /* This is the key change for vertical videos on mobile */
             .video-container {
-                padding-bottom: 177.77%; /* This creates a 9:16 aspect ratio for vertical videos */
+                padding-bottom: 177.77%; /* 9:16 aspect ratio for vertical videos */
             }
         }
 
@@ -122,18 +163,18 @@
                 <h2>ডেঙ্গু প্রতিরোধে আপনি প্রস্তুত?</h2>
                 <p>আপনার জ্ঞান পরীক্ষা করুন। আপনার পরিবারকে সুরক্ষিত রাখুন। ঢাকাকে নিরাপদ রাখুন।</p>
                 <button id="start-btn" class="btn">কুইজ শুরু করুন</button>
+                <img src="Untitled design (2).png" class="banner-image">
             </div>
 
             <!-- GAME SCREEN -->
             <div id="game-screen" class="screen">
-                <!-- Video container with fixed aspect ratio -->
                 <div id="video-container" class="video-container">
                     <div id="player"></div>
                 </div>
-                <!-- Question container with flexible height -->
                 <div id="question-area">
                     <h3 id="question-text"></h3>
                     <div id="answer-buttons" class="answer-buttons"></div>
+                    <img src="Untitled design (2).png" alt="Dengue Question Banner" class="banner-image">
                 </div>
                 
                 <button id="next-btn" class="btn">পরবর্তী প্রশ্ন</button>
@@ -144,25 +185,28 @@
                 <h1>কুইজ সম্পন্ন</h1>
                 <p id="final-score-text">আপনার চূড়ান্ত স্কোর ৫ এর মধ্যে ০।</p>
 
+                <!-- Static 1:1 Image -->
+                <img id="end-screen-image" src="https://placehold.co/300x300/00529B/FFFFFF?text=Dengue\nAwareness" alt="Dengue Awareness">
+
                 <div id="feedback-aware" class="feedback-message">
                     <h2>🏆 ডেঙ্গু সচেতন</h2>
-                    <img src="https://placehold.co/120x120/28a745/FFFFFF?text=🏆" alt="Dengue Aware" style="margin-bottom: 15px; border-radius: 50%;">
                     <p>চমৎকার! ডেঙ্গু প্রতিরোধে আপনার জ্ঞান খুবই ভালো। এই প্রচেষ্টা চালিয়ে যান এবং আমাদের সমাজকে সুরক্ষিত রাখতে আপনার জ্ঞান সবার সাথে শেয়ার করুন।</p>
                 </div>
 
                 <div id="feedback-slightly-aware" class="feedback-message">
                     <h2>👍 আংশিক সচেতন</h2>
-                    <img src="https://placehold.co/120x120/007bff/FFFFFF?text=👍" alt="Slightly Aware" style="margin-bottom: 15px; border-radius: 50%;">
                     <p>ভালো করেছেন! আপনি প্রাথমিক বিষয়গুলো জানেন, কিন্তু এখনো শেখার সুযোগ আছে। আপনার পরিবারকে পুরোপুরি সুরক্ষিত রাখতে মূল বিষয়গুলো আবার দেখে নিন।</p>
                 </div>
 
                 <div id="feedback-not-aware" class="feedback-message">
                     <h2>⚠️ অসচেতন</h2>
-                    <img src="https://placehold.co/120x120/dc3545/FFFFFF?text=⚠️" alt="Not Aware" style="margin-bottom: 15px; border-radius: 50%;">
                     <p>এখনই শেখার গুরুত্বপূর্ণ সময়। ডেঙ্গু প্রতিরোধের নিয়মগুলো মনোযোগ দিয়ে পর্যালোচনা করুন। এই সহজ পদক্ষেপগুলো জীবন বাঁচাতে পারে।</p>
                 </div>
 
-                <button id="restart-btn" class="btn" style="margin-top: 20px;">আবার খেলুন</button>
+                <div class="end-screen-buttons">
+                    <button id="restart-btn" class="btn">আবার খেলুন</button>
+                    <a id="share-btn" class="btn" href="#" target="_blank">Share on Facebook</a>
+                </div>
             </div>
         </main>
     </div>
@@ -188,6 +232,7 @@
         const endScreen = document.getElementById('end-screen');
         const startBtn = document.getElementById('start-btn');
         const restartBtn = document.getElementById('restart-btn');
+        const shareBtn = document.getElementById('share-btn');
         const nextBtn = document.getElementById('next-btn');
         const videoContainer = document.getElementById('video-container');
         const questionArea = document.getElementById('question-area');
@@ -205,8 +250,10 @@
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        function onYouTubeIframeAPIReady() { /* Ready to create player */ }
-
+        function onYouTubeIframeAPIReady() {
+            // API is ready, we can now create the player when start is clicked.
+        }
+        
         // --- 5. GAME LOGIC FUNCTIONS ---
         function startGame() {
             currentQuestionIndex = 0;
@@ -227,16 +274,26 @@
             } else {
                 player = new YT.Player('player', {
                     height: '100%', width: '100%', videoId: currentQuestion.videoId,
-                    playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0, 'showinfo': 0, 'iv_load_policy': 3, 'playsinline': 1 },
-                    events: { 'onStateChange': onPlayerStateChange }
+                    playerVars: { 
+                        // We ask it to autoplay, subsequent videos will obey this.
+                        'autoplay': 1, 
+                        'controls': 0, 
+                        'rel': 0, 
+                        'showinfo': 0, 
+                        'iv_load_policy': 3, 
+                        'playsinline': 1 
+                    },
+                    events: { 
+                        'onStateChange': onPlayerStateChange 
+                    }
                 });
             }
         }
         
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.ENDED) {
-                videoContainer.style.display = 'none'; // Hide video
-                showQuestion(); // Show question area
+                videoContainer.style.display = 'none';
+                showQuestion();
             }
         }
 
@@ -322,6 +379,12 @@
                 feedbackNotAware.style.display = 'block';
             }
             
+            // --- Set up Facebook Share Button ---
+            const shareText = `আমি ডেঙ্গু প্রতিরোধ কুইজে ${gameData.length} এর মধ্যে ${score} পেয়েছি! আপনিও খেলুন এবং নিজের জ্ঞান যাচাই করুন।`;
+            const pageUrl = document.querySelector('meta[property="og:url"]').content; // Get URL from meta tag
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
+            shareBtn.href = facebookShareUrl;
+
             endScreen.classList.add('visible');
         }
 
