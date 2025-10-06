@@ -63,13 +63,34 @@
         .game-header {
             background-color: var(--primary-color);
             color: var(--light-text);
-            padding: 15px 20px;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: 50px;
         }
-        .game-header h1 { margin: 0; font-size: 1.2em; }
-        #scoreboard { font-size: 1em; font-weight: 700; background: rgba(255, 255, 255, 0.15); padding: 6px 15px; border-radius: 20px; }
+        .header-left, .header-right {
+            flex: 1;
+        }
+        .header-center {
+            flex: 2;
+            text-align: center;
+        }
+        .header-left {
+            text-align: left;
+        }
+        .game-header h1 { margin: 0; font-size: 1.1em; }
+        #scoreboard { 
+            font-size: 1.3em; 
+            font-weight: 700;
+        }
+        #question-progress {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 2px;
+            min-height: 1.2em; /* Reserve space to prevent layout shift */
+        }
+
         .screen { padding: 20px 15px; }
         .screen:not(.visible) { display: none; }
         
@@ -140,11 +161,17 @@
             margin-top: 20px;
             display: block;
         }
+        .banner-image.top {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
 
         @media (max-width: 600px) {
             .video-container {
                 padding-bottom: 177.77%; /* 9:16 aspect ratio for vertical videos */
             }
+            .game-header h1 { font-size: 1em; }
+            #scoreboard { font-size: 1.2em; }
         }
 
     </style>
@@ -153,17 +180,24 @@
 
     <div class="game-container">
         <header class="game-header">
-            <h1 id="game-title">ডেঙ্গু প্রতিরোধ কুইজ</h1>
-            <div id="scoreboard">স্কোর: 0</div>
+            <div class="header-left">
+                <h1 id="game-title">ডেঙ্গু প্রতিরোধ কুইজ</h1>
+            </div>
+            <div class="header-center">
+                <div id="scoreboard">স্কোর: 0</div>
+                <div id="question-progress"></div>
+            </div>
+            <div class="header-right"></div>
         </header>
 
         <main>
             <!-- START SCREEN -->
             <div id="start-screen" class="screen visible">
+                <img src="Your paragraph text (2).png" alt="Dengue Awareness Top Banner" class="banner-image top">
                 <h2>ডেঙ্গু প্রতিরোধে আপনি প্রস্তুত?</h2>
                 <p>আপনার জ্ঞান পরীক্ষা করুন। আপনার পরিবারকে সুরক্ষিত রাখুন। ঢাকাকে নিরাপদ রাখুন।</p>
                 <button id="start-btn" class="btn">কুইজ শুরু করুন</button>
-                <img src="Untitled design (2).png" class="banner-image">
+                <img src="Untitled design (2).png" alt="Dengue Awareness Bottom Banner" class="banner-image">
             </div>
 
             <!-- GAME SCREEN -->
@@ -239,6 +273,7 @@
         const questionText = document.getElementById('question-text');
         const answerButtons = document.getElementById('answer-buttons');
         const scoreboard = document.getElementById('scoreboard');
+        const questionProgress = document.getElementById('question-progress');
         const finalScoreText = document.getElementById('final-score-text');
         const feedbackAware = document.getElementById('feedback-aware');
         const feedbackSlightlyAware = document.getElementById('feedback-slightly-aware');
@@ -268,6 +303,7 @@
         function loadQuestion() {
             resetState();
             const currentQuestion = gameData[currentQuestionIndex];
+            questionProgress.innerText = `প্রশ্ন ${currentQuestionIndex + 1} / ${gameData.length}`;
 
             if (player) {
                 player.loadVideoById(currentQuestion.videoId);
@@ -275,7 +311,6 @@
                 player = new YT.Player('player', {
                     height: '100%', width: '100%', videoId: currentQuestion.videoId,
                     playerVars: { 
-                        // We ask it to autoplay, subsequent videos will obey this.
                         'autoplay': 1, 
                         'controls': 0, 
                         'rel': 0, 
@@ -365,6 +400,7 @@
         
         function showEndScreen() {
             gameScreen.classList.remove('visible');
+            questionProgress.innerText = ''; // Clear progress text on the end screen
             finalScoreText.innerText = `আপনার চূড়ান্ত স্কোর ${gameData.length} এর মধ্যে ${score}।`;
             
             feedbackAware.style.display = 'none';
@@ -381,7 +417,7 @@
             
             // --- Set up Facebook Share Button ---
             const shareText = `আমি ডেঙ্গু প্রতিরোধ কুইজে ${gameData.length} এর মধ্যে ${score} পেয়েছি! আপনিও খেলুন এবং নিজের জ্ঞান যাচাই করুন।`;
-            const pageUrl = document.querySelector('meta[property="og:url"]').content; // Get URL from meta tag
+            const pageUrl = document.querySelector('meta[property="og:url"]').content;
             const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
             shareBtn.href = facebookShareUrl;
 
