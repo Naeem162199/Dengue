@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ডেঙ্গু প্রতিরোধ কুইজ</title>
+    <title>Ace presents- ডেঙ্গু হিরো চ্যালেঞ্জ</title>
 
     <!-- Google Analytics (Replace G-XXXXXXXXXX with your Measurement ID) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR5B24C8CY"></script>
@@ -137,6 +137,7 @@
         .feedback-message { display: none; }
         .feedback-message h2 { font-size: 1.6em; }
         .feedback-message p { font-size: 1em; color: #6c757d; line-height: 1.6; }
+        .final-share-text { font-size: 1em; color: #6c757d; line-height: 1.6; margin-top: 20px; }
 
         #end-screen-image {
             width: 300px;
@@ -172,6 +173,7 @@
             }
             .game-header h1 { font-size: 1em; }
             #scoreboard { font-size: 1.2em; }
+            #end-screen-image { width: 200px; height: 200px; }
         }
 
     </style>
@@ -194,8 +196,7 @@
             <!-- START SCREEN -->
             <div id="start-screen" class="screen visible">
                 <img src="Your paragraph text (2).png" alt="Dengue Awareness Top Banner" class="banner-image top">
-                <h2>ডেঙ্গু প্রতিরোধে আপনি প্রস্তুত?</h2>
-                <p>আপনার Knowledge পরীক্ষা করুন। আপনার পরিবারকে সুরক্ষিত রাখুন ও নিরাপদ রাখুন।</p>
+                <p>আপনি কি জানেন, ছোট্ট এক মশা পুরো শহরকে অসুস্থ করে দিতে পারে? চলুন দেখি, আপনি কতটা প্রস্তুত ডেঙ্গুর বিরুদ্ধে! 💪<br>✅ প্রতিটি সঠিক উত্তরে পাবেন ১০ পয়েন্ট!</p>
                 <button id="start-btn" class="btn">কুইজ শুরু করুন</button>
                 <img src="Untitled design (2).png" alt="Dengue Awareness Bottom Banner" class="banner-image">
             </div>
@@ -217,7 +218,7 @@
             <!-- END SCREEN -->
             <div id="end-screen" class="screen">
                 <h1>কুইজ সম্পন্ন</h1>
-                <p id="final-score-text">আপনার চূড়ান্ত স্কোর ৫ এর মধ্যে ০।</p>
+                <p id="final-score-text">আপনার চূড়ান্ত স্কোর ৫০ এর মধ্যে ০।</p>
 
                 <!-- Static 1:1 Image -->
                 <img id="end-screen-image" src="ডেঙ্গু প্রতিরোধ কুইজ (1).png" alt="Dengue Awareness">
@@ -234,8 +235,10 @@
 
                 <div id="feedback-not-aware" class="feedback-message">
                     <h2>⚠️ অসচেতন</h2>
-                    <p>এখনই শেখার গুরুত্বপূর্ণ সময়। ডেঙ্গু প্রতিরোধের নিয়মগুলো মনোযোগ দিয়ে পর্যালোচনা করুন। এই সহজ পদক্ষেপগুলো জীবন বাঁচাতে পারে।</p>
+                    <p>এখনই শেখার গুরুত্বপূর্ণ সময়। ডেঙ্গু প্রতিরোধের নিয়মগুলো মনোযোগ দিয়ে পর্যালোচনা করুন। এই সহজ পদক্ষেপগুলো জীবন বাঁচাতে পারে।</p>
                 </div>
+
+                <p class="final-share-text">আপনি এখন জানেন — সচেতনতা মানেই সুরক্ষা !<br>💬 কুইজটি শেয়ার করুন, আপনার বন্ধুরা কতটা ডেঙ্গু সচেতন তা জানুন!</p>
 
                 <div class="end-screen-buttons">
                     <button id="restart-btn" class="btn">আবার খেলুন</button>
@@ -246,13 +249,13 @@
     </div>
 
     <script>
-        // --- 1. GAME DATA ---
+        // --- 1. GAME DATA (Updated from Document) ---
         const gameData = [
-            { videoId: 'NoFwhbFkWhQ', question: 'এগুলোর মধ্যে কোনটি এডিস মশার জন্য বিপজ্জনক প্রজনন স্থান?', answers: [{ text: 'গাছের ভেজা পাতা', correct: false }, { text: 'শুধুমাত্র ছোট ডাবের খোসা', correct: false }, { text: 'শুধুমাত্র বড় পানির ড্রাম', correct: false }, { text: 'দেখানো সবকটি জমা পানির উৎস', correct: true }] },
-            { videoId: 'D2jE4NoChTM', question: 'এডিস মশা কখন সবচেয়ে বেশি সক্রিয় থাকে এবং কামড়ানোর সম্ভাবনা বেশি?', answers: [{ text: 'শুধুমাত্র রাতে, অন্ধকারে', correct: false }, { text: 'প্রধানত দিনের বেলায়', correct: false }, { text: 'সারাদিন ২৪ ঘণ্টা', correct: true }, { text: 'শুধুমাত্র ভারী বৃষ্টির সময়', correct: false }] },
-            { videoId: '54y4FieYpVc', question: 'পানি ফেলার পর পাত্র ঘষে পরিষ্কার করা জরুরি কেন?', answers: [{ text: 'পাত্রটিকে চকচকে করার জন্য', correct: false }, { text: 'পাত্রের গায়ে লেগে থাকা মশার ডিম দূর করার জন্য', correct: true }, { text: 'এটি কোনো জরুরি পদক্ষেপ নয়', correct: false }, { text: 'পানি বাঁচানোর জন্য', correct: false }] },
-            { videoId: 'oYyG_31Ab8g', question: 'জমা পানি পরিষ্কার করার পাশাপাশি, মশার কামড় থেকে নিজেকে রক্ষা করার মূল উপায় কী?', answers: [{ text: 'জোরে ফ্যান চালানো', correct: false }, { text: 'লম্বা পোশাক পরা এবং মশা তাড়ানোর স্প্রে বা লোশন ব্যবহার করা', correct: true }, { text: 'রসুনের মতো তীব্র গন্ধযুক্ত খাবার খাওয়া', correct: false }, { text: 'জানালা খোলা রেখে ঘরের ভেতরে থাকা', correct: false }] },
-            { videoId: 'EjHsNAoJN_0', question: 'ডেঙ্গুর সন্দেহ হলে, ডাক্তারের পরামর্শ ছাড়া কোন ধরনের ব্যথানাশক এড়িয়ে চলবেন?', answers: [{ text: 'প্যারাসিটামল', correct: false }, { text: 'অ্যাসপিরিন, আইবুপ্রোফেন বা অন্যান্য NSAID', correct: true }, { text: 'ভিটামিন সি ট্যাবলেট', correct: false }, { text: 'সব ধরনের ঔষধ নিরাপদ', correct: false }] }
+            { videoId: 'NoFwhbFkWhQ', question: 'এডিস মশা সাধারণত কখন কামড়ায়?', answers: [{ text: 'রাতে', correct: false }, { text: 'ভোরবেলা', correct: false }, { text: 'দিনে (সকাল ও বিকেলে)', correct: true }, { text: 'সারাদিন', correct: false }] },
+            { videoId: 'D2jE4NoChTM', question: 'ডেঙ্গুর একটি সাধারণ লক্ষণ কী?', answers: [{ text: 'কাশি ও সর্দি', correct: false }, { text: 'ঘন ঘন প্রস্রাব', correct: false }, { text: 'উচ্চ জ্বর ও তীব্র মাথাব্যথা', correct: true }, { text: 'শুধু জয়েন্টে ব্যথা', correct: false }] },
+            { videoId: '54y4FieYpVc', question: 'এডিস মশা কোথায় ডিম পাড়ে?', answers: [{ text: 'ড্রেনে', correct: false }, { text: 'পরিষ্কার স্থির পানিতে', correct: true }, { text: 'নদীতে', correct: false }, { text: 'ভেজা মাটিতে', correct: false }] },
+            { videoId: 'oYyG_31Ab8g', question: 'ডেঙ্গু রোগীর বেশি কী খাওয়া উচিত?', answers: [{ text: 'চা-কফি', correct: false }, { text: 'ঠান্ডা সফট ড্রিংক', correct: false }, { text: 'পানি ও ফলের রস', correct: true }, { text: 'কিছুই নয়', correct: false }] },
+            { videoId: 'EjHsNAoJN_0', question: 'ডেঙ্গু জ্বরে জ্বর ও ব্যথা কমানোর জন্য কোন ওষুধটি একমাত্র নিরাপদ?', answers: [{ text: 'আইবুপ্রোফেন', correct: false }, { text: 'অ্যাসপিরিন', correct: false }, { text: 'প্যারাসিটামল (Ace)', correct: true }, { text: 'ডাইক্লোফেনাক', correct: false }] }
         ];
 
         // --- 2. GLOBAL VARIABLES ---
@@ -278,6 +281,7 @@
         const feedbackAware = document.getElementById('feedback-aware');
         const feedbackSlightlyAware = document.getElementById('feedback-slightly-aware');
         const feedbackNotAware = document.getElementById('feedback-not-aware');
+        const gameTitle = document.getElementById('game-title');
         
         // --- 4. YOUTUBE API SETUP ---
         const tag = document.createElement('script');
@@ -290,6 +294,10 @@
         }
         
         // --- 5. GAME LOGIC FUNCTIONS ---
+        function initializeGame() {
+            gameTitle.innerText = "Ace presents- ডেঙ্গু হিরো চ্যালেঞ্জ";
+        }
+
         function startGame() {
             currentQuestionIndex = 0;
             score = 0;
@@ -364,7 +372,7 @@
             const isCorrect = selectedBtn.dataset.correct === 'true';
 
             if (isCorrect) {
-                score++;
+                score += 10; // Add 10 points for correct answer
                 updateScoreboard();
             }
 
@@ -401,22 +409,23 @@
         function showEndScreen() {
             gameScreen.classList.remove('visible');
             questionProgress.innerText = ''; // Clear progress text on the end screen
-            finalScoreText.innerText = `আপনার চূড়ান্ত স্কোর ${gameData.length} এর মধ্যে ${score}।`;
+            finalScoreText.innerText = `আপনার চূড়ান্ত স্কোর ৫০ এর মধ্যে ${score}।`;
             
             feedbackAware.style.display = 'none';
             feedbackSlightlyAware.style.display = 'none';
             feedbackNotAware.style.display = 'none';
 
-            if (score >= 4) {
+            // Updated scoring logic for feedback
+            if (score >= 40) {
                 feedbackAware.style.display = 'block';
-            } else if (score >= 2) {
+            } else if (score >= 20) {
                 feedbackSlightlyAware.style.display = 'block';
             } else {
                 feedbackNotAware.style.display = 'block';
             }
             
             // --- Set up Facebook Share Button ---
-            const shareText = `আমি ডেঙ্গু প্রতিরোধ কুইজে ${gameData.length} এর মধ্যে ${score} পেয়েছি! আপনিও খেলুন এবং নিজের জ্ঞান যাচাই করুন।`;
+            const shareText = `আমি "Ace presents- ডেঙ্গু হিরো চ্যালেঞ্জ"-এ ৫০ এর মধ্যে ${score} পেয়েছি! আপনিও খেলুন এবং নিজের জ্ঞান যাচাই করুন।`;
             const pageUrl = document.querySelector('meta[property="og:url"]').content;
             const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
             shareBtn.href = facebookShareUrl;
@@ -428,6 +437,9 @@
         startBtn.addEventListener('click', startGame);
         restartBtn.addEventListener('click', startGame);
         nextBtn.addEventListener('click', showNextQuestion);
+        
+        // --- 7. INITIALIZE ---
+        initializeGame();
     </script>
 </body>
 </html>
