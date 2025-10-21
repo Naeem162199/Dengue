@@ -197,7 +197,7 @@
             <div id="start-screen" class="screen visible">
                 <img src="Top Banner (2).png" alt="Dengue Awareness Top Banner" class="banner-image top">
                 <h2>🦟 স্বাগতম “Ace presents- ডেঙ্গু হিরো চ্যালেঞ্জ”-এ!</h2>
-                <p>আপনি কি জানেন, ছোট্ট এক মশা পুরো শহরকে অসুস্থ করে দিতে পারে? চলুন দেখি, আপনি কতটা প্রস্তুত ডেঙ্গুর বিরুদ্ধে! 💪<br>✅ প্রতিটি সঠিক উত্তরে পাবেন ১০ পয়েন্ট!</p>
+                <p>আপনি কি জানেন, ছোট্ট এক মশা পুরো শহরকে অসুস্থ করে দিতে পারে? চলুন দেখি, আপনি কতটা প্রস্তুত ডেঙ্গুর বিরুদ্ধে! 💪<br>✅ প্রতিটি সঠিক উত্তরে পাবেন 10 পয়েন্ট!</p>
                 <button id="start-btn" class="btn">কুইজ শুরু করুন</button>
                 <img src="Untitled design (2).png" alt="Dengue Awareness Bottom Banner" class="banner-image">
             </div>
@@ -219,7 +219,7 @@
             <!-- END SCREEN -->
             <div id="end-screen" class="screen">
                 <h1>কুইজ সম্পন্ন</h1>
-                <p id="final-score-text">আপনার চূড়ান্ত স্কোর ৫০ এর মধ্যে ০।</p>
+                <p id="final-score-text">আপনার চূড়ান্ত স্কোর 50 এর মধ্যে ০।</p>
 
                 <!-- Static 1:1 Image -->
                 <img id="end-screen-image" src="Last Banner.png" alt="Dengue Awareness">
@@ -252,11 +252,11 @@
     <script>
         // --- 1. GAME DATA (Updated from Document) ---
         const gameData = [
-            { videoId: 'Eqli9uHGAVE', question: 'এডিস মশা সাধারণত কখন কামড়ায়?', answers: [{ text: 'রাতে', correct: false }, { text: 'ভোরবেলা', correct: false }, { text: 'দিনে (সকাল ও বিকেলে)', correct: true }, { text: 'সারাদিন', correct: false }] },
-            { videoId: 'EjHsNAoJN_0', question: 'ডেঙ্গুর একটি সাধারণ লক্ষণ কী?', answers: [{ text: 'কাশি ও সর্দি', correct: false }, { text: 'ঘন ঘন প্রস্রাব', correct: false }, { text: 'উচ্চ জ্বর ও তীব্র মাথাব্যথা', correct: true }, { text: 'শুধু জয়েন্টে ব্যথা', correct: false }] },
-            { videoId: 'NoFwhbFkWhQ', question: 'এডিস মশা কোথায় ডিম পাড়ে?', answers: [{ text: 'ড্রেনে', correct: false }, { text: 'পরিষ্কার স্থির পানিতে', correct: true }, { text: 'নদীতে', correct: false }, { text: 'ভেজা মাটিতে', correct: false }] },
+            { videoId: 'Eqli9uHGAVE', question: 'এডিস মশা সাধারণত কখন কামড়ায়?', answers: [{ text: 'রাতে', correct: false }, { text: 'দুপুরে', correct: false }, { text: 'সারাদিন (যেকোন সময়)', correct: true }, { text: 'সারাদিন', correct: false }] },
+            { videoId: 'EjHsNAoJN_0', question: 'ডেঙ্গুর একটি সাধারণ লক্ষণ কী?', answers: [{ text: 'কাশি ও সর্দি', correct: false }, { text: 'ঘন ঘন প্রস্রাব', correct: false }, { text: 'উচ্চ জ্বর ও তীব্র মাথাব্যথা', correct: true }, { text: 'ঘ্রাণ শক্তি হারিয়ে ফেলা', correct: false }] },
+            { videoId: 'NoFwhbFkWhQ', question: 'এডিস মশা সাধারণত কোথায় ডিম পাড়ে?', answers: [{ text: 'সমুদ্রে', correct: false }, { text: 'জমে থাকা পানিতে', correct: true }, { text: 'নদীতে', correct: false }, { text: 'ভেজা মাটিতে', correct: false }] },
             { videoId: '3gaqbGJ-26s', question: 'ডেঙ্গু রোগীর বেশি কী খাওয়া উচিত?', answers: [{ text: 'চা-কফি', correct: false }, { text: 'ঠান্ডা সফট ড্রিংক', correct: false }, { text: 'পানি ও ফলের রস', correct: true }, { text: 'কিছুই নয়', correct: false }] },
-            { videoId: 'TyWyF37vOlA', question: 'ডেঙ্গু জ্বরে জ্বর ও ব্যথা কমানোর জন্য কোন ওষুধটি একমাত্র নিরাপদ?', answers: [{ text: 'আইবুপ্রোফেন', correct: false }, { text: 'অ্যাসপিরিন', correct: false }, { text: 'প্যারাসিটামল (Ace)', correct: true }, { text: 'ডাইক্লোফেনাক', correct: false }] }
+            { videoId: 'TyWyF37vOlA', question: 'ডেঙ্গুতে জ্বর ও ব্যথা কমানোর জন্য কোন ওষুধটি একমাত্র নিরাপদ?', answers: [{ text: 'আইবুপ্রোফেন', correct: false }, { text: 'অ্যাসপিরিন', correct: false }, { text: 'প্যারাসিটামল (Ace)', correct: true }, { text: 'ডাইক্লোফেনাক', correct: false }] }
         ];
 
         // --- 2. GLOBAL VARIABLES ---
