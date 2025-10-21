@@ -406,7 +406,7 @@
         function showEndScreen() {
             gameScreen.classList.remove('visible');
             questionProgress.innerText = ''; // Clear progress text on the end screen
-            finalScoreText.innerText = `আপনার চূড়ান্ত স্কোর ৫০ এর মধ্যে ${score}।`;
+            finalScoreText.innerText = `আপনার চূড়ান্ত স্কোর 50 এর মধ্যে ${score}।`;
             
             feedbackAware.style.display = 'none';
             feedbackSlightlyAware.style.display = 'none';
@@ -422,7 +422,7 @@
             }
             
             // --- Set up Facebook Share Button ---
-            const shareText = `আমি "Ace presents- ডেঙ্গু হিরো চ্যালেঞ্জ"-এ ৫০ এর মধ্যে ${score} পেয়েছি! আপনিও খেলুন এবং নিজের জ্ঞান যাচাই করুন।`;
+            const shareText = `আমি "Ace presents- ডেঙ্গু হিরো চ্যালেঞ্জ"-এ 50 এর মধ্যে ${score} পেয়েছি! আপনিও খেলুন এবং নিজের জ্ঞান যাচাই করুন।`;
             const pageUrl = document.querySelector('meta[property="og:url"]').content;
             const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
             shareBtn.href = facebookShareUrl;
